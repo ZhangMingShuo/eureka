@@ -126,5 +126,8 @@
         <module>eureka-provider</module>
         <module>eureka-provider2</module>
         <module>eureka-consumer</module>
+        <module>user-provider</module>
+        <module>user-consumer</module>
+        <module>user-api</module>
     </modules>
 </project>
