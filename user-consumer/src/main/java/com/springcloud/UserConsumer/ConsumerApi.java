@@ -12,31 +12,27 @@ import com.springcloud.UserAPI.UserApi;
  */
 @FeignClient(name = "user-provider")
 public interface ConsumerApi extends UserApi {
-	
+
 	/**
 	 * 这里 getMapping 是给Feign看的 get请求 user-provider/getMap?id={1}
 	 * @RequestParam("id") 也是给Feign看的
-	 * 
+	 *
 	 * HttpClient Http协议
 	 * @param id
 	 * @return
 	 */
 	@GetMapping("/getMap")
 	Map<Integer, String> getMap(@RequestParam("id") Integer id);
-	
-	
-	
+
+
+
 	@GetMapping("/getMap2")
 	Map<Integer, String> getMap2(@RequestParam("id") Integer id,@RequestParam("name") String name);
-	
+
 	@GetMapping("/getMap3")
 	Map<Integer, String> getMap3(@RequestParam Map<String, Object> map);
 
 //	@RequestMapping(name = "/postMap",method = RequestMethod.POST)
 	@PostMapping("/postMap")
 	Map<Integer, String> postMap(Map<String, Object> map);
-	
-	
-
-	
 }
