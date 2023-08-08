@@ -8,7 +8,7 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="userid" jdbcType="VARCHAR" property="userid" />
     <result column="username" jdbcType="VARCHAR" property="username" />
-    <result column="createdTime" jdbcType="TIMESTAMP" property="createdtime" />
+    <result column="createdTime" jdbcType="TIMESTAMP" property="createdTime" />
   </resultMap>
   <resultMap id="BaseResultMap" type="com.springcloud.pojo.AppUser">
     <!--
@@ -17,7 +17,7 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="userid" jdbcType="VARCHAR" property="userid" />
     <result column="username" jdbcType="VARCHAR" property="username" />
-    <result column="createdTime" jdbcType="TIMESTAMP" property="createdtime" />
+    <result column="createdTime" jdbcType="TIMESTAMP" property="createdTime" />
   </resultMap>
   <resultMap id="BaseResultMap" type="com.springcloud.pojo.AppUser">
     <!--
@@ -26,6 +26,6 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="userid" jdbcType="VARCHAR" property="userid" />
     <result column="username" jdbcType="VARCHAR" property="username" />
-    <result column="createdTime" jdbcType="TIMESTAMP" property="createdtime" />
+    <result column="createdTime" jdbcType="TIMESTAMP" property="createdTime" />
   </resultMap>
 </mapper>

@@ -12,19 +12,45 @@ spring:
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/springcloud?useSSL=false&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true
+    url: jdbc:mysql://localhost:3306/springcloud?useSSL=false&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true
     username: root
     password: 123456
-    hikari:
-      connection-timeout: 30000
-      minimum-idle: 5
-      maximum-pool-size: 20
-      auto-commit: true
-      idle-timeout: 600000
-      pool-name: DateSourceHikariCP
-      max-lifetime: 1800000
-      connection-test-query: SELECT 1
+    druid:
+      db-type: mysql
+      filter:
+        stat:
+          enabled: true
+          db-type: mysql
+          log-slow-sql: true
+          slow-sql-millis: 2000
+          merge-sql: false
+        slf4j:
+          enabled: true
+          statement-log-enabled: true
+          statement-executable-sql-log-enable: true
+      web-stat-filter:
+        enabled: true
+        stat-view-servlet:
+          enabled: true
+          url-pattern: "/druid/*"
+          login-username: admin
+          login-password: 666666
+
+#    hikari:
+#      connection-timeout: 30000
+#      minimum-idle: 5
+#      maximum-pool-size: 20
+#      auto-commit: true
+#      idle-timeout: 600000
+#      pool-name: DateSourceHikariCP
+#      max-lifetime: 1800000
+#      connection-test-query: SELECT 1
+
 eureka:
   client:
     service-url:
       defaultZone: http://yiming:123@ek1.com:7001/eureka/
+logging:
+  level:
+    druid.sql.Statement: DEBUG
+

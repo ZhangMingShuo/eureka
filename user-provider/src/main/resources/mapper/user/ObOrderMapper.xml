@@ -16,15 +16,15 @@
 <!--  </select>-->
   <select id="genWaybillNo" resultType="java.lang.String">
   SELECT (CASE
-  WHEN ID_GEN IS NULl AND '零部件'= #{bigType} THEN 'L-'||TO_CHAR(#{orderDate}, 'yyMM')||'000001'
-  WHEN ID_GEN IS NULl AND '集团外整车'= #{bigType} THEN 'J-'||TO_CHAR(#{orderDate}, 'yyMM')||'000001'
-  WHEN ID_GEN IS NULl AND '普货'= #{bigType} THEN 'P-'||TO_CHAR(#{orderDate}, 'yyMM')||'000001'
-  WHEN ID_GEN IS NOT NULl AND '零部件'= #{bigType} THEN 'L-'|| TO_CHAR(#{orderDate}, 'yyMM')|| ID_GEN
-  WHEN ID_GEN IS NOT NULl AND '集团外整车'= #{bigType} THEN 'J-' || TO_CHAR(#{orderDate}, 'yyMM')||ID_GEN
-  WHEN ID_GEN IS NOT NULl AND '普货'= #{bigType} THEN 'P-'|| TO_CHAR(#{orderDate}, 'yyMM')|| ID_GEN
+  WHEN ID_GEN IS NULl AND '零部件'= #{bigType} THEN concat(concat('L-',date_format(#{orderDate}, '%y%m'),'000001')
+  WHEN ID_GEN IS NULl AND '集团外整车'= #{bigType} THEN concat('J-',date_format(#{orderDate}, '%y%m'),'000001')
+  WHEN ID_GEN IS NULl AND '普货'= #{bigType} THEN concat('P-',date_format(#{orderDate}, '%y%m'),'000001')
+  WHEN ID_GEN IS NOT NULl AND '零部件'= #{bigType} THEN concat('L-', date_format(#{orderDate}, '%y%m'), ID_GEN)
+  WHEN ID_GEN IS NOT NULl AND '集团外整车'= #{bigType} THEN concat('J-' , date_format(#{orderDate}, '%y%m'),ID_GEN)
+  WHEN ID_GEN IS NOT NULl AND '普货'= #{bigType} THEN concat('P-', date_format(#{orderDate}, '%y%m'), ID_GEN)
   ELSE NULL END) AS wayWillNo
   FROM (
-  SELECT TO_CHAR(TO_NUMBER(MAX(regexp_replace(WAYBILL_NO, '[^0-9]')))+1, 'fm000000') AS ID_GEN FROM OB_ORDER  WHERE BIG_TYPE= #{bigType} AND TO_CHAR(DTORDER_DATE, 'yyyyMM')=TO_CHAR(#{orderDate}, 'yyyyMM')
+  SELECT date_format(convert(MAX(regexp_replace(WAYBILL_NO, '[^0-9]')),SIGNED)+1, 'fm000000') AS ID_GEN FROM OB_ORDER  WHERE BIG_TYPE= #{bigType} AND date_format(DTORDER_DATE, 'yy%y%m')=date_format(#{orderDate}, 'yy%y%m')
   )
   </select>
 
