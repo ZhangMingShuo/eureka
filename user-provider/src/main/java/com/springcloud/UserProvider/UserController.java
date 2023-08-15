@@ -37,7 +37,7 @@ public class UserController implements UserApi {
 		try {
 			System.out.println("准备睡");
 
-			Thread.sleep(4000);
+			Thread.sleep(4000);//如果配置为4 会报错There was an unexpected error (type=Gateway Timeout, status=504). com.netflix.zuul.exception.ZuulException: Hystrix Readed time out
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

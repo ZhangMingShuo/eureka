@@ -129,5 +129,6 @@
         <module>user-provider</module>
         <module>user-consumer</module>
         <module>user-api</module>
+        <module>zuul-test</module>
     </modules>
 </project>

@@ -51,7 +51,7 @@ public class HystrixTest extends HystrixCommand {
 		// TODO Auto-generated method stub
 		// try
 		System.out.println("执行逻辑");
-		int i = 1/1;
+		int i = 1/1;//1/0
 		return "xxoo";
 	}
 

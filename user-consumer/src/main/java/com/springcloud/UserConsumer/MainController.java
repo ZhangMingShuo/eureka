@@ -3,7 +3,9 @@ package com.springcloud.UserConsumer;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,10 +17,14 @@ public class MainController {
 
 	@Autowired
 	ConsumerApi api;
+	@Autowired
+	RestService rest;
 //
 //	@Autowired
 //	MashibingApi mapi;
 
+	@Value("server.port")
+	private String port;
 	@GetMapping("/alive")
 	public String alive() {
 		/**
@@ -99,6 +105,15 @@ public class MainController {
 	 */
 
 
+	}
+	//给SpringMVC
+	@GetMapping("/alive2")
+	@HystrixCommand(defaultFallback = "back")
+	public String alive2(){
+		return "Consumer:" + port + "->>>" + rest.alive();
+	}
+	public String back(){
+		return "hh";
 	}
 
 
